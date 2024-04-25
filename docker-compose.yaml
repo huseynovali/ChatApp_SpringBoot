@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:12
+    container_name: socket_io
+
+    environment:
+      POSTGRES_USER: ${db.username}
+      POSTGRES_PASSWORD: ${db.password}
+      POSTGRES_DB: dbusers
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
