@@ -18,7 +18,9 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long SenderId;
+    private String SenderName;
     private Long ReceiverId;
+    private String ReceiverName;
     private String message;
     private Date time;
 
