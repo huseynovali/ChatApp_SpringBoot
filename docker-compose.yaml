@@ -6,8 +6,8 @@ services:
     container_name: socket_io
 
     environment:
-      POSTGRES_USER: ${db.username}
-      POSTGRES_PASSWORD: ${db.password}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ali20031001a
       POSTGRES_DB: dbusers
     volumes:
       - ./data:/var/lib/postgresql/data

@@ -3,8 +3,8 @@ spring:
         name: Socket_Io
     datasource:
         url: jdbc:postgresql://localhost:5432/dbusers
-        username: ${db.username}
-        password: ${db.password}
+        username: postgres
+        password: Ali20031001a
         driver-class-name: org.postgresql.Driver
     jpa:
         hibernate:
