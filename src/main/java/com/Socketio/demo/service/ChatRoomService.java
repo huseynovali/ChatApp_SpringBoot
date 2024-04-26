@@ -15,8 +15,8 @@ public class ChatRoomService {
     private final ChatRoomRepo chatRoomRepo;
 
 
-    public List<ChatRoom> getChatRoomByUserId(Long id) {
-        return chatRoomRepo.findBySenderId(id).orElseThrow(() -> new RuntimeException("ChatRoom not found"));
+    public void getChatRoomByUserId(Long id) {
+      //  return chatRoomRepo.findBySenderId(id).orElseThrow(() -> new RuntimeException("ChatRoom not found"));
     }
 
     public void deleteChatRoom(Long id) {

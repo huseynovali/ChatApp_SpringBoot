@@ -1,12 +1,10 @@
 package com.Socketio.demo.service;
 
-
 import com.Socketio.demo.dto.request.ChatMessageRequest;
 import com.Socketio.demo.dto.response.ChatMessageResponse;
 import com.Socketio.demo.map.MessageMapper;
 import com.Socketio.demo.model.ChatMessage;
 import com.Socketio.demo.repository.ChatMessageRepo;
-import com.Socketio.demo.repository.ChatRoomRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +15,7 @@ import java.util.List;
 public class ChatMessageService {
 
     private final ChatMessageRepo chatMessageRepo;
-    private MessageMapper messageMapper;
-
+    private final MessageMapper messageMapper;
 
     public void saveChatMessage(ChatMessageRequest message) {
         ChatMessage chatMessage = messageMapper.messageRequestToMessage(message);

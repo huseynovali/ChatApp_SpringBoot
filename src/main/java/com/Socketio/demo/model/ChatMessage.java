@@ -25,7 +25,7 @@ public class ChatMessage {
     private Date time;
 
     @ManyToOne
-    @JoinColumn(name = "chatRoom_id")
+
     @JsonIgnore
     private ChatRoom chatRoom;
 }
