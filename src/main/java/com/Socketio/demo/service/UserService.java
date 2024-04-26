@@ -17,20 +17,20 @@ public class UserService {
     private final UserMapper userMapper;
 
 
-    public UserResponse getUserById(Long id) {
-        User user = userRepo.findByPrivateId(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserResponse getUserByNickName(String nickname) {
+        User user = userRepo.findByNickName(nickname).orElseThrow(() -> new RuntimeException("User not found"));
         return userMapper.userToUserResponse(user);
     }
 
 
    public void connectUser(Long id) {
-        User userToConnect = userRepo.findByPrivateId(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User userToConnect = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         userToConnect.setStatus(Status.ONLINE);
         userRepo.save(userToConnect);
     }
 
     public void disconnectUser(Long id) {
-        User userToDisconnect = userRepo.findByPrivateId(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User userToDisconnect = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         userToDisconnect.setStatus(Status.OFFLINE);
         userRepo.save(userToDisconnect);
 

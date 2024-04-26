@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-    private Long privateId;
+    private String nickName;
 
 
     @Enumerated(EnumType.STRING)

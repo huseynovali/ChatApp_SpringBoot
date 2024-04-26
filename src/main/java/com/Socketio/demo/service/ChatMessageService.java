@@ -17,9 +17,10 @@ public class ChatMessageService {
     private final ChatMessageRepo chatMessageRepo;
     private final MessageMapper messageMapper;
 
-    public void saveChatMessage(ChatMessageRequest message) {
+    public ChatMessage saveChatMessage(ChatMessageRequest message) {
         ChatMessage chatMessage = messageMapper.messageRequestToMessage(message);
         chatMessageRepo.save(chatMessage);
+        return chatMessage;
     }
 
 

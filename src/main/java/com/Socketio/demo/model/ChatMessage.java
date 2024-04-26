@@ -19,13 +19,13 @@ public class ChatMessage {
     private Long id;
     private Long SenderId;
     private String SenderName;
-    private Long ReceiverId;
-    private String ReceiverName;
+    private Long RecipientId;
+    private String RecipientName;
     private String message;
     private Date time;
 
     @ManyToOne
-
+    @JoinColumn(name = "chatRoom_id")
     @JsonIgnore
     private ChatRoom chatRoom;
 }

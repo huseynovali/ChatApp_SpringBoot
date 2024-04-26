@@ -4,6 +4,7 @@ import com.Socketio.demo.dto.request.AuthenticationRequestDto;
 import com.Socketio.demo.dto.request.RegisterRequestDto;
 import com.Socketio.demo.dto.response.AuthenticationResponseDto;
 import com.Socketio.demo.model.Role;
+import com.Socketio.demo.model.Status;
 import com.Socketio.demo.model.User;
 import com.Socketio.demo.repository.UserRepo;
 import com.Socketio.demo.service.jwt.JwtService;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +39,7 @@ public class AuthService {
         user = User.builder()
                 .email(request.getEmail())
                 .name(request.getName())
+                .nickName(request.getNickName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
@@ -55,7 +58,8 @@ public class AuthService {
         claims.put("authorities", user.getAuthorities().stream().map(Object::toString).toArray());
         claims.put("userId", user.getId());
         String token = jwtService.generateToken((HashMap<String, Object>) claims, user);
-
+        user.setStatus(Status.ONLINE);
+        userRepo.save(user);
         return AuthenticationResponseDto.builder()
                 .token(token)
                 .build();

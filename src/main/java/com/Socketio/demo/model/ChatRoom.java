@@ -17,7 +17,7 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long SenderId;
-    private Long ReceiverId;
+    private Long RecipientId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "chatRoom")
     private List<ChatMessage> message;
