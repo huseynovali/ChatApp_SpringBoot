@@ -2,6 +2,7 @@ package com.Socketio.demo.service;
 
 import com.Socketio.demo.dto.response.UserResponse;
 import com.Socketio.demo.map.UserMapper;
+import com.Socketio.demo.model.Status;
 import com.Socketio.demo.model.User;
 import com.Socketio.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,19 @@ public class UserService {
     }
 
 
-    public void changeStatus(Long id, String status) {
-//        userRepo.findById(id).ifPresent(user -> {
-//            user.setStatus(status);
-//            userRepo.save(user);
-//        });
+   public void connectUser(Long id) {
+        User userToConnect = userRepo.findByPrivateId(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userToConnect.setStatus(Status.ONLINE);
+        userRepo.save(userToConnect);
     }
+
+    public void disconnectUser(Long id) {
+        User userToDisconnect = userRepo.findByPrivateId(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userToDisconnect.setStatus(Status.OFFLINE);
+        userRepo.save(userToDisconnect);
+
+    }
+
 
 
 }
