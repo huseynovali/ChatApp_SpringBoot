@@ -2,9 +2,11 @@ package com.Socketio.demo.controller;
 
 import com.Socketio.demo.dto.request.ChatMessageRequest;
 import com.Socketio.demo.dto.response.ChatMessageResponse;
+import com.Socketio.demo.dto.response.ChatRoomResponse;
 import com.Socketio.demo.model.ChatMessage;
 import com.Socketio.demo.model.ChatNotification;
 import com.Socketio.demo.service.ChatMessageService;
+import com.Socketio.demo.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -24,14 +26,12 @@ public class ChatController {
 
     private  SimpMessagingTemplate messagingTemplate;
     private final ChatMessageService chatMessageService;
+    private final ChatRoomService chatRoomService;
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessageRequest chatMessage) {
-
-
+        System.out.println(chatMessage);
         ChatMessage savedMsg = chatMessageService.saveChatMessage(chatMessage);
-
-
         messagingTemplate.convertAndSendToUser(
                 chatMessage.getRecipientId().toString(), "/queue/messages",
                 new ChatNotification(
@@ -47,4 +47,7 @@ public class ChatController {
     public ResponseEntity<List<ChatMessageResponse>> findChatMessages(@PathVariable Long RoomId) {
         return ResponseEntity.ok(chatMessageService.getChatMessageByRoomId(RoomId));
     }
+
+
+
 }

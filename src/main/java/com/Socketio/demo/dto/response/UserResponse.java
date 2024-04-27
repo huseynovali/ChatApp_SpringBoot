@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserResponse {
     private Long id;
-    private String privateId;
+    private String nickname;
     private String name;
     private String email;
     private String status;
