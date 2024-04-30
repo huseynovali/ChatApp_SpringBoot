@@ -1,6 +1,7 @@
 package com.Socketio.demo.controller;
 
 import com.Socketio.demo.dto.response.ChatRoomResponse;
+import com.Socketio.demo.model.ChatRoom;
 import com.Socketio.demo.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,12 @@ public class ChatRoomController {
 
     private final ChatRoomService chatRoomService;
 
-    @GetMapping("chatroom/{senderid}")
+    @GetMapping("chatroom/{roomId}")
+    public ChatRoom getRoomByRoomId(@PathVariable("roomId") Long roomId) {
+        return chatRoomService.getChatByRoomId(roomId);
+    }
+
+    @GetMapping("chatroom/sender/{senderid}")
     public List<ChatRoomResponse> getRoomByUserId(@PathVariable("senderid") Long senderId) {
 
         return chatRoomService.getChatRoomByUserId(senderId);

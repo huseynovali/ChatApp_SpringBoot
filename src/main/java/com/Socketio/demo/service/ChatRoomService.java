@@ -25,6 +25,12 @@ public class ChatRoomService {
 
     }
 
+    public ChatRoom getChatByRoomId(Long id) {
+       ChatRoom chatroom = chatRoomRepo.findById(id).orElseThrow(() -> new RuntimeException("ChatRoom not found"));
+        return chatroom;
+
+    }
+
     public void deleteChatRoom(Long id) {
         chatRoomRepo.deleteById(id);
     }
